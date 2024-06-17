@@ -40,3 +40,57 @@ O DML é uma sala destinada ao armazenamento correto dos produtos e ferramentas 
 
 5- Restrições de Integridade: Defina restrições como NOT NULL, UNIQUE, CHECK para manter a consistência e a validade dos dados armazenados.
 
+# 🖥Trabalho SQL
+
+## Todos os clientes armazenados no sistema:
+
+      SELECT *
+    FROM cliente;
+
+## Exiba os veículos que tenham final 3 no número da placa
+
+    SELECT *
+    FROM veiculo
+    WHERE placa LIKE '%3';
+
+## Mostre os clientes que residem no RS e que não possuam telefone
+
+    SELECT *
+    FROM cliente
+    WHERE uf_cnh = 'RS' AND (telefone IS NULL OR telefone = '');
+
+## Exiba o código dos clientes que alugaram veículos por mais de 90 dias.
+
+    SELECT id_cliente
+    FROM contrato_aluguel
+    WHERE duracao > 90;
+    
+## Quantos veículos há cadastrados no sistema
+
+    SELECT COUNT(*) AS total_veiculos
+    FROM veiculo;
+
+## Mostre o veículo alugado por Alexandre Zamberlan.
+
+    SELECT v.*
+    FROM veiculo v
+    JOIN contrato_aluguel ca ON v.id_veiculo = ca.id_veiculo
+    JOIN cliente c ON ca.id_cliente = c.id_cliente
+    WHERE c.nome = 'Alexandre Zamberlan';
+
+## Mostre os clientes e os escritórios associados no contrato de aluguel.
+
+    SELECT c.*, e.*
+    FROM contrato_aluguel ca
+    JOIN cliente c ON ca.id_cliente = c.id_cliente
+    JOIN escritorio e ON ca.id_escritorio = e.id_escritorio;
+
+
+
+
+
+
+
+
+
+
